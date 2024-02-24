@@ -1,0 +1,711 @@
+package application;
+import javafx.application.Application;
+import javafx.geometry.HPos;
+import javafx.geometry.Insets;
+import javafx.geometry.Pos;
+import javafx.geometry.VPos;
+import javafx.scene.Group;
+import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
+import javafx.scene.control.CheckBox;
+import javafx.scene.control.Label;
+import javafx.scene.control.Menu;
+import javafx.scene.control.MenuBar;
+import javafx.scene.control.MenuItem;
+import javafx.scene.control.Separator;
+import javafx.scene.control.TextField;
+import javafx.scene.effect.Blend;
+import javafx.scene.effect.BlendMode;
+import javafx.scene.effect.DropShadow;
+import javafx.scene.effect.InnerShadow;
+import javafx.scene.image.Image;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundFill;
+import javafx.scene.layout.BackgroundImage;
+import javafx.scene.layout.BackgroundPosition;
+import javafx.scene.layout.BackgroundRepeat;
+import javafx.scene.layout.BackgroundSize;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.ColumnConstraints;
+import javafx.scene.layout.CornerRadii;
+import javafx.scene.layout.GridPane;
+import javafx.scene.layout.Region;
+import javafx.scene.layout.StackPane;
+import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontPosture;
+import javafx.scene.text.FontWeight;
+import javafx.scene.text.Text;
+import javafx.scene.text.TextAlignment;
+import javafx.scene.web.WebEngine;
+import javafx.scene.web.WebView;
+import javafx.stage.Stage;
+public class menu extends Application {
+private Region grid;
+	private Stage primaryStage;
+	private Scene scene1,sct1,scene,sc,sce,scc3,scene9,scene99,scene44;
+        @Override
+    public void start(Stage primaryStage)throws Exception {
+          this.primaryStage=primaryStage;		
+        // Create a menu bar
+        MenuBar menuBar = new MenuBar();
+        Menu fileMenu = new Menu("About");
+        Menu editMenu = new Menu("Edit");
+        Menu helpMenu = new Menu("Help");
+        // Create menu items
+        MenuItem newMenuItem = new MenuItem("Exam timetable");
+        MenuItem openMenuItem = new MenuItem("FEES DUE");
+        MenuItem saveMenuItem = new MenuItem("SCHOLARSHIP");
+        MenuItem cutMenuItem = new MenuItem("Previous year question paper");
+        MenuItem copyMenuItem = new MenuItem("Bus details");
+        MenuItem pasteMenuItem = new MenuItem("Paste");
+        MenuItem aboutMenuItem = new MenuItem("Datbase");
+       // Add menu items to menus
+        fileMenu.getItems().addAll(newMenuItem, openMenuItem, saveMenuItem);
+        editMenu.getItems().addAll(cutMenuItem, copyMenuItem, pasteMenuItem);
+        helpMenu.getItems().addAll(aboutMenuItem);
+        // Add menus to the menu bar
+        menuBar.getMenus().addAll(fileMenu, editMenu, helpMenu);
+  Button go= new Button("next"); 
+        go.setOnAction(e->goTogo());
+       // Create a grid pane
+        GridPane gridPane1 = new GridPane();
+        gridPane1.setHgap(10);
+        gridPane1.setVgap(10);
+        gridPane1.setPadding(new Insets(25, 25, 25, 25));
+       String initialImagePath = "file:/D:/joffin/grade2.png";
+        Image initialBackgroundImage = new Image(initialImagePath);
+        BackgroundSize backgroundSize1 = new BackgroundSize(800,800, false, false, false, false);
+        BackgroundImage initialBgImg = new BackgroundImage(
+                initialBackgroundImage,
+                BackgroundRepeat.NO_REPEAT,
+                BackgroundRepeat.NO_REPEAT,
+                BackgroundPosition.DEFAULT,
+                backgroundSize1
+                );
+        Background initialBackground = new Background(initialBgImg);
+        gridPane1.setBackground(initialBackground);
+        newMenuItem.setOnAction(e -> {
+            String imagePath = "file:/D:\\joffin/exam.jpg";
+            Image backgroundImage = new Image(imagePath);
+         BackgroundSize backgroundSize = new BackgroundSize(800, 800, false, false, false, false);
+            BackgroundImage backgroundImg = new BackgroundImage(
+                    backgroundImage,
+                    BackgroundRepeat.NO_REPEAT,
+                    BackgroundRepeat.NO_REPEAT,
+                    BackgroundPosition.DEFAULT,
+                    backgroundSize
+            );
+            Background background = new Background(backgroundImg);
+        });
+        openMenuItem.setOnAction(e -> {
+            String imagePath = "file:/D:\\joffin/due.png";
+            Image backgroundImage = new Image(imagePath);
+             BackgroundSize backgroundSize = new BackgroundSize(800, 800, false, false, false, false);
+            BackgroundImage backgroundImg = new BackgroundImage(
+                    backgroundImage,
+                    BackgroundRepeat.NO_REPEAT,
+                    BackgroundRepeat.NO_REPEAT,
+                    BackgroundPosition.DEFAULT,
+                    backgroundSize
+            );
+           Background background = new Background(backgroundImg);
+        });
+        // Add the menu bar to the grid pane
+        gridPane1.add(menuBar, 1, 0);
+        gridPane1.add(go, 20,50 );
+         scene9=new Scene(gridPane1, 400, 300,Color.AQUA);
+ GridPane jo = new GridPane();
+jo.setBackground(new Background(new BackgroundFill(Color.rgb(0, 0, 0), new CornerRadii(0), new Insets(0))));
+jo.setAlignment(Pos.CENTER);
+jo.setHgap(10);
+jo.setVgap(10);
+jo.setPadding(new Insets(25, 25, 25, 25));
+
+ scene1 = new Scene(jo, 300, 200);
+String imagePath = "file:/D:\\joffin/book2.png";
+Image  backgroundImage = new Image(imagePath);
+Label regno = new Label("REGISTRATION NUMBER");
+regno.setStyle("-fx-font-weight: bold;");
+regno.setTextFill(Color.web("white", 0.8));
+Label pas = new Label("PASSWORD");
+pas.setStyle("-fx-font-weight: bold;");
+pas.setTextFill(Color.web("white", 0.8));
+TextField s = new TextField();
+s.setPromptText("enter REGISTRATION NUMBER");
+TextField js = new TextField();
+js.setPromptText("enter PASSWORD");
+Button loginButton = new Button("LOGIN");
+loginButton.setStyle("-fx-background-color: yellow;");
+loginButton.setOnAction(e -> {
+    String REGISTRATIONNUMBER = s.getText();
+    String password = js.getText();
+    if (REGISTRATIONNUMBER.equals("9213221") && password.equals("password")) {
+        showAlert("Login Successful", "Welcome, " + REGISTRATIONNUMBER + "!");
+        // Proceed after successful login
+        goTologin();
+    } else {
+        showAlert("Login Failed", "Invalid username or password!");
+    }
+});
+jo.add(regno, 0, 0);
+jo.add(s, 1, 0);
+jo.add(pas, 0, 1);
+jo.add(js, 1, 1);
+jo.add(loginButton, 1, 4);
+jo.setBackground(new javafx.scene.layout.Background(new javafx.scene.layout.BackgroundImage(
+        backgroundImage,
+        javafx.scene.layout.BackgroundRepeat.NO_REPEAT,
+        javafx.scene.layout.BackgroundRepeat.NO_REPEAT,
+        javafx.scene.layout.BackgroundPosition.DEFAULT,
+        new javafx.scene.layout.BackgroundSize(900, 1200, false, false, false, false)
+)));
+        GridPane grid = new GridPane();
+        grid.setBackground(new Background(new BackgroundFill(Color.rgb(40, 239, 255), new CornerRadii(0), new Insets(0))));
+        grid.setAlignment(Pos.CENTER);
+        grid.setHgap(10);
+        grid.setVgap(10);
+        grid.setPadding(new Insets(25, 25, 25, 25));
+        String imagePath1 = "file:/D:\\joffin/mount.jpg";
+        Image  backgroundImage1 = new Image(imagePath1);
+        Label user = new Label("User ID");
+        user.setFont(new Font(32));
+        user.setTextFill(Color.web("white", 0.8));
+        user.setStyle("-fx-font-weight: bold;");
+        Label dept = new Label("Department");
+        dept.setTextFill(Color.web("white", 0.8));
+        dept.setStyle("-fx-font-weight: bold;");
+        dept.setFont(new Font(32));
+        Label yr = new Label("Year");
+        yr.setTextFill(Color.web("white", 0.8));
+        yr.setStyle("-fx-font-weight: bold;");
+        yr.setFont(new Font(32));
+        TextField us = new TextField();
+        us.setPromptText("enter id");
+        TextField dp= new TextField();
+        dp.setPromptText("enter department");
+        TextField yer = new TextField();
+        yer.setPromptText("enter year");
+        Button calculateButton = new Button("LOGIN");
+        calculateButton.setStyle("-fx-background-color: skyblue;");
+     calculateButton.setOnAction(e->
+     {
+    	 String userID = us.getText();
+         String department = dp.getText();
+         String year = yer.getText() ;
+         if(userID.equals("psnapsna")&&department.equals("cse")&&!year.isEmpty())
+         {
+        	 showAlert2("Login Successful", "Welcome, " + userID + "!");
+        	 goTo();
+         }
+         else {
+             showAlert2("Login Failed", "Please fill in all fields.");
+         }
+    	 });
+        grid.add(user, 0, 0);
+        grid.add(us, 1, 0);
+        grid.add(dept, 0, 1);
+        grid.add(dp, 1, 1);
+        grid.add(yr, 0, 2);
+        grid.add(yer, 1, 2);
+        grid.add(calculateButton, 1, 4);
+        grid.setBackground(new javafx.scene.layout.Background(new javafx.scene.layout.BackgroundImage(
+                backgroundImage1,
+                javafx.scene.layout.BackgroundRepeat.NO_REPEAT,
+                javafx.scene.layout.BackgroundRepeat.NO_REPEAT,
+                javafx.scene.layout.BackgroundPosition.DEFAULT,
+                new javafx.scene.layout.BackgroundSize(800, 800, false, false, false, false)
+        )));
+        scene = new Scene(grid, 400, 300,Color.AQUA);
+  GridPane du= new GridPane();
+        String imagePath2 = "file:/D:\\joffin/nnn.png";
+        Image  backgroundImage2 = new Image(imagePath2);
+        du.setBackground(new Background(new BackgroundFill(Color.rgb(255, 102, 255), new CornerRadii(0), new Insets(0))));
+        du.setAlignment(Pos.CENTER);
+        du.setHgap(10);
+        du.setVgap(10);
+        du.setPadding(new Insets(25, 25, 25, 25));
+        Label enterName = new Label(" Name:");
+     enterName.setTextFill(Color.web("yellow", 0.8));
+        enterName.setStyle("-fx-font-weight: bold;");
+        enterName.setFont(new Font(14));
+      Label dob = new Label("DATE OF BIRTH");
+        dob.setFont(new Font(14));
+      dob.setTextFill(Color.web("yellow", 0.8));
+        dob.setStyle("-fx-font-weight: bold;");
+        Label phone = new Label("PHONE NUMBER");
+       phone .setFont(new Font(14));
+        phone.setTextFill(Color.web("yellow", 0.8));
+        phone.setStyle("-fx-font-weight: bold;");
+        Label mail= new Label("MAIL ID");
+        mail .setFont(new Font(14));
+        mail.setTextFill(Color.web("yellow", 0.8));
+        mail.setStyle("-fx-font-weight: bold;");
+        TextField names = new TextField();
+        names.setPromptText("enter NAME");
+        TextField dofb = new TextField();
+        dofb.setPromptText("enter DATE OF BIRTH");
+        TextField ph = new TextField();
+        ph.setPromptText("enter PHONE NUMBER");
+        TextField ma = new TextField();
+        ma.setPromptText("enter MAIL ID");
+        Button next= new Button("next");
+        next.setOnAction(e->goTonext());
+        du.add(enterName, 0, 0);
+        du.add(names, 1, 0);
+        du.add(dob, 0, 1);
+        du.add(dofb, 1, 1);
+        du.add(phone, 0, 2);
+        du.add(ph, 1, 2);
+        du.add(mail, 0 ,3);
+        du.add(ma, 1, 3);
+        du.add(next, 1, 4);
+        du.setBackground(new javafx.scene.layout.Background(new javafx.scene.layout.BackgroundImage(
+                backgroundImage2,
+                javafx.scene.layout.BackgroundRepeat.NO_REPEAT,
+                javafx.scene.layout.BackgroundRepeat.NO_REPEAT,
+                javafx.scene.layout.BackgroundPosition.DEFAULT,
+                new javafx.scene.layout.BackgroundSize(900, 1200, false, false, false, false)
+        )));
+ sce = new Scene(du, 400, 300,Color.AQUA);
+        GridPane ro = new GridPane();
+        ro.setBackground(new Background(new BackgroundFill(Color.rgb(255, 102, 255), new CornerRadii(0), new Insets(0))));
+        ro.setAlignment(Pos.CENTER);
+        ro.setHgap(10);
+        ro.setVgap(10);
+        ro.setPadding(new Insets(25, 25, 25, 25));
+        String imagePath3 = "file:/D:\\joffin/mmm.jpg";
+        Image  backgroundImage3 = new Image(imagePath3);
+    Label studentName = new Label("Student Name:");
+studentName.setTextFill(Color.web("black", 0.8));
+        studentName.setStyle("-fx-font-weight: bold;");
+     Label mathsLabel = new Label("Maths");
+mathsLabel.setStyle("-fx-font-weight: bold;");
+mathsLabel.setTextFill(Color.web("black", 0.8));
+  Label scienceLabel = new Label("Science:");
+        scienceLabel.setTextFill(Color.web("black", 0.8));
+        scienceLabel .setStyle("-fx-font-weight: bold;");
+        Label englishLabel = new Label("English:");
+        englishLabel.setTextFill(Color.web("black", 0.8));
+        englishLabel .setStyle("-fx-font-weight: bold;");
+        Label totalLabel = new Label("Total:");
+        totalLabel.setTextFill(Color.web("black", 0.8));
+        totalLabel .setStyle("-fx-font-weight: bold;");
+        Label averageLabel = new Label("Average:");
+        averageLabel.setTextFill(Color.web("black", 0.8));
+        averageLabel .setStyle("-fx-font-weight: bold;");
+        Label gradeLabel = new Label("Grade:");
+        gradeLabel.setTextFill(Color.web("black", 0.8));
+        gradeLabel .setStyle("-fx-font-weight: bold;");
+     TextField nameTextField = new TextField();
+        TextField mathsTextField = new TextField();
+        TextField scienceTextField = new TextField();
+        TextField englishTextField = new TextField();
+Label totalResultLabel = new Label();
+        Label averageResultLabel = new Label();
+        Label gradeResultLabel = new Label();
+ Button calculateButt = new Button("Calculate Grades");
+calculateButt.setOnAction(e->goTocalc());
+        calculateButt.setStyle("-fx-background-color:gray");
+        Button jt = new Button("GO TO SEARCH");
+        jt.setOnAction(e->goTosearch());
+        jt.setStyle("-fx-background-color: green;");
+Button jm = new Button("Quiz");
+        jm.setStyle("-fx-background-color: yellow;");
+   jm.setOnAction(e->goToquiz());
+      ro.add(studentName, 0, 0);
+        ro.add(nameTextField, 1, 0);
+        ro.add(mathsLabel, 0, 1);
+        ro.add(mathsTextField, 1, 1);
+        ro.add(scienceLabel, 0, 2);
+        ro.add(scienceTextField, 1, 2);
+        ro.add(englishLabel, 0, 3);
+        ro.add(englishTextField, 1, 3);
+        ro.add(calculateButt, 0, 4, 2, 1);
+        ro.add(jt, 2, 4, 2, 1);
+        ro.add(jm, 4, 4, 2, 1);
+        ro.setBackground(new javafx.scene.layout.Background(new javafx.scene.layout.BackgroundImage(
+                backgroundImage3,
+                javafx.scene.layout.BackgroundRepeat.NO_REPEAT,
+                javafx.scene.layout.BackgroundRepeat.NO_REPEAT,
+                javafx.scene.layout.BackgroundPosition.DEFAULT,
+                new javafx.scene.layout.BackgroundSize(900, 1200, false, false, false, false)
+        )));
+        sc = new Scene(ro, 400, 300,Color.BEIGE);
+         GridPane mo = new GridPane();
+        mo.setBackground(new Background(new BackgroundFill(Color.rgb(255, 102, 255), new CornerRadii(0), new Insets(0))));
+        mo.setAlignment(Pos.CENTER);
+        mo.setHgap(10);
+        mo.setVgap(10);
+        mo.setPadding(new Insets(25, 25, 25, 25));
+ String imagePath4 = "file:/D:\\joffin/mmm.jpg";
+        Image  backgroundImage4 = new Image(imagePath4);
+        calculateButt.setOnAction(e -> {
+            try {
+            	goTocalc();
+                double maths = Double.parseDouble(mathsTextField.getText());
+                double science = Double.parseDouble(scienceTextField.getText());
+                double english = Double.parseDouble(englishTextField.getText());
+ double total = maths + science + english;
+                double average = total / 3;
+                String grade;
+                if (average >= 85) {
+                    grade = "A";
+                } else if (average >= 75) {
+                    grade = "B";
+                } else if (average >= 65) {
+                    grade = "C";
+                } else if (average >= 45) {
+                    grade = "D";
+                } else {
+                    grade = "Fail";
+                }
+                totalResultLabel.setText(Double.toString(total));
+                averageResultLabel.setText(Double.toString(average));
+                gradeResultLabel.setText(grade);
+            } catch (NumberFormatException ex) {
+                // Handle invalid input
+                totalResultLabel.setText("Invalid input");
+                averageResultLabel.setText("");
+                gradeResultLabel.setText("");
+            }
+        });
+        Button kku = new Button("PREVIOUS");
+        kku.setOnAction(e->goToprevious());
+        mo.add(totalLabel, 0, 5);
+        mo.add(totalResultLabel, 1, 5);
+        mo.add(averageLabel, 0, 6);
+        mo.add(averageResultLabel, 1, 6);
+        mo.add(gradeLabel, 0, 7);
+        mo.add(gradeResultLabel, 1, 7);
+        mo.add(kku, 0, 4, 2, 1);
+        mo.setBackground(new javafx.scene.layout.Background(new javafx.scene.layout.BackgroundImage(
+                backgroundImage4,
+                javafx.scene.layout.BackgroundRepeat.NO_REPEAT,
+                javafx.scene.layout.BackgroundRepeat.NO_REPEAT,
+                javafx.scene.layout.BackgroundPosition.DEFAULT,
+                new javafx.scene.layout.BackgroundSize(900, 1200, false, false, false, false)
+        )));
+      scc3 = new Scene(mo, 400, 300,Color.BEIGE);
+     GridPane lo=new GridPane();
+        lo.setBackground(new Background(new BackgroundFill(Color.rgb(209, 229, 255), new CornerRadii(0), new Insets(0))));
+        lo.setHgap(20);
+        lo.setVgap(30);
+        lo.setAlignment(Pos.CENTER);
+        lo.setPadding(new Insets(25,25,25,25));
+       TextField g1=new TextField();
+        GridPane.setConstraints(g1,0,1);
+        Button j1=new Button("Search");
+        GridPane.setConstraints(j1,2,1);
+        Label d1=new Label("STUDENT Name: ");
+        Label d2=new Label(" REG NO: ");
+        Label d3=new Label("Department : ");
+           Label d4=new Label("Phone NO : ");
+        Label d5=new Label("DOB: ");
+        Label d6=new Label("Email-ID : ");
+        Label d7=new Label("Address");
+        Label d8=new Label("Age:");
+      d1.setTextFill(Color.hsb(0,0,0));
+        d1.setFont(Font.font(15));
+        d1.setStyle("-fx-font-weight:bold;");
+        d2.setTextFill(Color.hsb(0,0,0));
+        d2.setFont(Font.font(15));
+        d2.setStyle("-fx-font-weight:bold;");
+        d3.setTextFill(Color.hsb(0,0,0));
+        d3.setFont(Font.font(15));
+        d3.setStyle("-fx-font-weight:bold;");
+        d4.setTextFill(Color.hsb(0,0,0));
+        d4.setFont(Font.font(15));
+        d4.setStyle("-fx-font-weight:bold;");
+        d5.setTextFill(Color.hsb(0,0,0));
+        d5.setFont(Font.font(15));
+        d5.setStyle("-fx-font-weight:bold;");
+        d6.setTextFill(Color.hsb(0,0,0));
+        d6.setFont(Font.font(15));
+        d6.setStyle("-fx-font-weight:bold;");
+        d7.setTextFill(Color.hsb(0,0,0));
+        d7.setFont(Font.font(15));
+        d7.setStyle("-fx-font-weight:bold;");
+        d8.setTextFill(Color.hsb(0,0,0));
+        d8.setFont(Font.font(15));
+        d8.setStyle("-fx-font-weight:bold;");
+            GridPane.setConstraints(d1,0,2);
+        GridPane.setConstraints(d2,0,3);
+        GridPane.setConstraints(d3,0,4);
+        GridPane.setConstraints(d4,0,5);
+        GridPane.setConstraints(d5,0,6);
+        GridPane.setConstraints(d6,3,2);
+        GridPane.setConstraints(d7,3,3);
+        GridPane.setConstraints(d8,3,4);
+         Label k1=new Label("");
+        GridPane.setConstraints(k1,2,2);
+        Label k2=new Label("");
+        GridPane.setConstraints(k2,2,3);
+        Label k3=new Label("");
+        GridPane.setConstraints(k3,2,4);
+        Label k4=new Label("");
+        GridPane.setConstraints(k4,2,5);
+        Label k5=new Label("");
+        GridPane.setConstraints(k5,2,6);
+        Label k6=new Label("");
+        GridPane.setConstraints(k6,4,2);
+        Label k7=new Label("");
+        GridPane.setConstraints(k7,4,3);
+        Label k8=new Label("");
+        GridPane.setConstraints(k8,4,4);
+           j1.setOnAction(e -> {
+        k1.setText("RENOLD");
+        k1.setStyle("-fx-font-weight: bold;");
+        k2.setText("897899");
+        k2.setStyle("-fx-font-weight: bold;");
+ k3.setText("MECH");
+        k3.setStyle("-fx-font-weight: bold;");
+        k4.setText("758967895");
+        k4.setStyle("-fx-font-weight: bold;");
+      k5.setText("27-05-2005");
+        k5.setStyle("-fx-font-weight: bold;");
+  k6.setText("kamlesh@123gmail.com");
+        k6.setStyle("-fx-font-weight: bold;");
+ k7.setText("DINDIGUL 624002");
+        k7.setStyle("-fx-font-weight: bold;");
+        k8.setText("17");
+        k8.setStyle("-fx-font-weight: bold;");
+ });
+         Button exitButton = new Button("Exit");
+        exitButton.setOnAction(e -> {
+            // Close the application when the button is clicked
+            primaryStage.close();
+        });
+       lo.getChildren().addAll(d1,d2,d3,d4,d5,d6,d7,g1,d8,k1,k2,k3,k4,k5,k6,k7,k8,j1);
+        lo.add(exitButton, 0, 9, 2, 1);
+        sct1=new Scene(lo,800,500);
+        sct1.setFill(Color.rgb(150,10,25));
+       GridPane gridPane = new GridPane();
+        gridPane.setPadding(new Insets(10));
+        gridPane.setHgap(10);
+        gridPane.setVgap(5);
+  // Column constraints for better alignment
+        ColumnConstraints column1 = new ColumnConstraints(150);
+        ColumnConstraints column2 = new ColumnConstraints(150);
+        gridPane.getColumnConstraints().addAll(column1, column2);
+       // First set of labels and checkboxes
+        Label label1 = new Label("What is the tallest type of tree");
+        Font font1= Font.font("verdana", FontWeight.BOLD, FontPosture.REGULAR, 12);
+        label1.setFont(font1);
+        gridPane.add(label1, 0, 0, 2, 1);
+        CheckBox checkBox1 = new CheckBox("REDWOOD");
+        CheckBox checkBox2 = new CheckBox("BANYAN");
+        CheckBox checkBox3 = new CheckBox("BANANA");
+        CheckBox checkBox4 = new CheckBox("COCONUT");
+        gridPane.add(checkBox1, 0, 1);
+        gridPane.add(checkBox2, 1, 1);
+        gridPane.add(checkBox3, 0, 2);
+        gridPane.add(checkBox4, 1, 2);
+        // Separator for the first set
+        Separator sep1 = new Separator();
+        sep1.setMaxWidth(80);
+        sep1.setHalignment(HPos.CENTER);
+        gridPane.add(sep1, 0, 3, 2, 1); // Spanning separator across two columns
+       // Second set of labels and checkboxes
+        Label label2 = new Label("WHAT PLANET IS CLOSE TO SUN");
+        label2.setFont(font1);
+        gridPane.add(label2, 0, 4, 2, 1);
+       CheckBox checkBox5 = new CheckBox("EARTH");
+        CheckBox checkBox6 = new CheckBox("MERCURY");
+        CheckBox checkBox7 = new CheckBox("VENUS");
+        CheckBox checkBox8 = new CheckBox("JUPITER");
+        gridPane.add(checkBox5, 0, 5);
+        gridPane.add(checkBox6, 1, 5);
+        gridPane.add(checkBox7, 0, 6);
+        gridPane.add(checkBox8, 1, 6);
+         // Separator for the second set
+        Separator sep2 = new Separator();
+        sep2.setMaxWidth(80);
+        sep2.setHalignment(HPos.CENTER);
+        gridPane.add(sep2, 0, 7, 2, 1);
+       // Third set of labels and checkboxes
+        Label label3 = new Label("WHAT IS THE CAPITAL OF CANADA");
+        label3.setFont(font1);
+        gridPane.add(label3, 0, 8, 2, 1);
+         CheckBox checkBox9 = new CheckBox("CHENNAI");
+        CheckBox checkBox10 = new CheckBox("SYDNEY");
+        CheckBox checkBox11 = new CheckBox("NEW YORK");
+        CheckBox checkBox12 = new CheckBox("OTTAWA");
+        gridPane.add(checkBox9, 0, 9);
+        gridPane.add(checkBox10, 1, 9);
+        gridPane.add(checkBox11, 0, 10);
+        gridPane.add(checkBox12, 1, 10);
+        Button submitButton = new Button("Submit Successfully");
+        submitButton.setOnAction(e -> handleSubmission());
+        Button kk = new Button("PREVIOUS");
+        kk.setOnAction(e->goToprevious());
+         gridPane.add(submitButton, 0, 11, 2, 1);
+        gridPane.add(kk, 1, 11, 2, 1);// Spanning across two columns
+        scene44 = new Scene(gridPane, 400, 400, Color.BEIGE);
+        
+        primaryStage.setScene(sct1);
+        primaryStage.show();
+     primaryStage.setScene(scene9);
+        primaryStage.setHeight(700);
+        primaryStage.setWidth(800)
+        primaryStage.setTitle("STUDENT GRADING SYSTEM");
+        primaryStage.show()
+    }
+	private void showAlert2(String title, String message) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.showAndWait();
+    }
+     private void showAlert(String title, String message) {
+		// TODO Auto-generated method stub
+		 Alert alert = new Alert(Alert.AlertType.INFORMATION);
+	          alert.setTitle(title);
+	        alert.setHeaderText(null);
+	        alert.setContentText(message);
+	        alert.showAndWait();
+	    }
+	private void goToprevious() {
+		 primaryStage.setScene( sc );
+	 }
+	private void goToquiz() {
+		// TODO Auto-generated method stub
+		 primaryStage.setScene( scene44 );
+}
+	private void handleSubmission() {
+	        // You can implement submission logic here
+	        System.out.println("Form submitted successfully!");
+	    }
+   private void goTosearch() {
+		 primaryStage.setScene(sct1);
+	}
+            private void goTogo() {
+		// TODO Auto-generated method stub
+    	primaryStage.setScene(scene1);
+	}
+	private void goTocalc() {
+    	primaryStage.setScene(scc3);
+	}
+	private void goTonext() {
+	primaryStage.setScene(sc);
+	}
+	private void goTologin() {
+    	 primaryStage.setScene(scene);
+            }
+	private void goTo(){
+        primaryStage.setScene(sce);
+         }
+      public static void main(String[] args) {
+        launch(args);
+    }
+}       
+
+For Database connection
+package application;
+
+import javafx.application.Application;
+import javafx.geometry.Insets;
+import javafx.geometry.Pos;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundFill;
+import javafx.scene.layout.CornerRadii;
+import javafx.scene.layout.GridPane;
+import javafx.scene.paint.Color;
+import javafx.stage.Stage;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+
+public class Mainh extends Application {
+
+    private TextField departmentField;
+    private TextField mathsField;
+    private TextField scienceField;
+    private TextField englishField;
+    private TextField totalField;
+
+    public static void main(String[] args) {
+        launch(args);
+    }
+
+    @Override
+    public void start(Stage primaryStage) {
+        primaryStage.setTitle("JavaFX Form with MySQL");
+
+        // Create UI elements
+        GridPane grid = new GridPane();
+        grid.setBackground(new Background(new BackgroundFill(Color.rgb(209, 229, 255), new CornerRadii(0), new Insets(0))));
+        grid.setAlignment(Pos.CENTER);
+        grid.setPadding(new Insets(10, 10, 10, 10));
+        grid.setVgap(5);
+        grid.setHgap(5);
+
+        Label departmentLabel = new Label("Department:");
+        departmentField = new TextField();
+        Label mathsLabel = new Label("Maths:");
+        mathsField = new TextField();
+        Label scienceLabel = new Label("Science:");
+        scienceField = new TextField();
+        Label englishLabel = new Label("English:");
+        englishField = new TextField();
+        Label totalLabel = new Label("Total:");
+        totalField = new TextField();
+
+        Button submitButton = new Button("Submit");
+        submitButton.setStyle("-fx-background-color: #4CAF50; -fx-text-fill: white;");
+        submitButton.setOnAction(e -> handleSubmit());
+
+        // Add elements to the grid
+        grid.add(departmentLabel, 0, 0);
+        grid.add(departmentField, 1, 0);
+        grid.add(mathsLabel, 0, 1);
+        grid.add(mathsField, 1, 1);
+        grid.add(scienceLabel, 0, 2);
+        grid.add(scienceField, 1, 2);
+        grid.add(englishLabel, 0, 3);
+        grid.add(englishField, 1, 3);
+        grid.add(totalLabel, 0, 4);
+        grid.add(totalField, 1, 4);
+        grid.add(submitButton, 0, 5, 2, 1);
+
+        Scene scene = new Scene(grid, 400, 300);
+        scene.setFill(Color.LIGHTGRAY);
+        primaryStage.setScene(scene);
+
+        primaryStage.show();
+    }
+
+    private void handleSubmit() {
+        // Get values from text fields
+        String department = departmentField.getText();
+        double maths = Double.parseDouble(mathsField.getText());
+        double science = Double.parseDouble(scienceField.getText());
+        double english = Double.parseDouble(englishField.getText());
+        double total = maths + science + english;
+
+        // Connect to MySQL and insert data
+        try {
+            Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/joffin", "root", "joffinrenold");
+            String sql = "INSERT INTO javafinal (department, maths, science, english, total) VALUES (?, ?, ?, ?, ?)";
+            try (PreparedStatement statement = connection.prepareStatement(sql)) {
+                statement.setString(1, department);
+                statement.setDouble(2, maths);
+                statement.setDouble(3, science);
+                statement.setDouble(4, english);
+                statement.setDouble(5, total);
+                statement.executeUpdate();
+            }
+            connection.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+}
